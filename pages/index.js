@@ -1,65 +1,57 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import { DonutChart } from "@carbon/charts-react";
+import "@carbon/charts/styles.css";
+// Or
+// import "@carbon/charts/styles/styles.scss";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+// IBM Plex should either be imported in your project by using Carbon
+// or consumed manually through an import
+class App extends React.Component {
+	state = {
+		data: [
+	{
+		"group": "Gastrointestinal Health",
+		"value": 45
+	},
+	{
+		"group": "Nutrition",
+		"value": 20
+	},
+	{
+		"group": "Sleep",
+		"value": 8
+	},
+	{
+		"group": "Training and Life Stress",
+		"value": 5
+	},
+	{
+		"group": "Mood States",
+		"value": 5
+	},
+	{
+		"group": "Misc",
+		"value": 4
+	}
+],
+		options: {
+	"title": "REDS and Overtraining Risk - Contributing Factors",
+	"resizable": true,
+	"donut": {
+		"center": {
+			"label": "Your REDS and Overtraining Risk Percentage"
+		}
+	},
+	"height": "500px"
 }
+	};
+
+	render = () => (
+		<DonutChart
+			data={this.state.data}
+			options={this.state.options}>
+		</DonutChart>
+	);
+}
+
+export default App
