@@ -1,4 +1,11 @@
 @import "https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Sans:400,600&display=swap";
+.risk-chart {
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  padding-top: 20vh;
+}
+
 html,
 body {
   padding: 0;

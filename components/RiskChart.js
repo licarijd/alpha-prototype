@@ -1,6 +1,7 @@
 import React from "react";
 import { DonutChart } from "@carbon/charts-react";
 import "@carbon/charts/styles.css";
+//import './styles.scss'
 // Or
 // import "@carbon/charts/styles/styles.scss";
 
@@ -46,9 +47,11 @@ export default function RiskChart() {
   }
 
 	return (
-		<DonutChart
-			data={data}
-			options={options}>
-		</DonutChart>
+    <div className='risk-chart'>
+      <DonutChart
+        data={data}
+        options={options}>
+      </DonutChart>
+    </div>
 	);
 }
