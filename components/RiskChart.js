@@ -36,12 +36,16 @@ export default function RiskChart() {
   ]
   
   const options = {
-    "title": "REDS and Overtraining Risk - Contributing Factors",
+    //"title": "REDS and Overtraining Risk - Contributing Factors",
+    "title": '',
     "resizable": true,
+    "legend": {
+      "alignment": "center"
+    },
     "donut": {
       "center": {
         "label": "Your REDS and Overtraining Risk Percentage"
-      }
+      }, "alignment": "center"
     },
     "height": "700px"
   }
