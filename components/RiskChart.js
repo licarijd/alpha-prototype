@@ -43,7 +43,7 @@ export default function RiskChart() {
         "label": "Your REDS and Overtraining Risk Percentage"
       }
     },
-    "height": "500px"
+    "height": "700px"
   }
 
 	return (
