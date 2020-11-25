@@ -1,6 +1,6 @@
 import React from "react";
 import { DonutChart } from "@carbon/charts-react";
-import "@carbon/charts/styles.css";
+import "@carbon/charts/styles-g90.css";
 //import './styles.scss'
 // Or
 // import "@carbon/charts/styles/styles.scss";
@@ -47,7 +47,8 @@ export default function RiskChart() {
         "label": "Your REDS and Overtraining Risk Percentage"
       }, "alignment": "center"
     },
-    "height": "700px"
+    "height": "750px",
+    "width": "100%"
   }
 
 	return (

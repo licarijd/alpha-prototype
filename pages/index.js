@@ -3,7 +3,7 @@ import RiskChart from '../components/RiskChart'
 
 export default function Home() {
   return (
-    <div>
+    <div className="background">
       <Header></Header>
       <RiskChart/>
     </div>

@@ -1,10 +1,22 @@
 @import "https://fonts.googleapis.com/css?family=IBM+Plex+Sans+Condensed|IBM+Plex+Sans:400,600&display=swap";
+@import '@carbon/themes/scss/themes';
+
+$carbon--theme: $carbon--theme--g90;
+
+.background {
+  // Use the gray 100 theme
+ //@include carbon--theme();
+ //background-color: $ui-background;
+ background-color: #282828;
+}
 
 .risk-chart {
   display: block;
-  width: 30%;
-  margin: 0 auto;
+  //width: 81%;
+  //margin-right: 20vw;
   padding-top: 20vh;
+  padding-bottom: 20vh;
+  background-color: #282828;
 }
 
 html,
