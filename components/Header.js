@@ -26,7 +26,7 @@ const NavHeader = () => (
           <HeaderMenuItem href="#">This Week</HeaderMenuItem>
           <HeaderMenuItem href="#">Today</HeaderMenuItem>
         </HeaderMenu>
-        <HeaderMenuItem href="#">Trends</HeaderMenuItem>
+        <HeaderMenuItem href="#">Custom Trends</HeaderMenuItem>
         <HeaderMenuItem href="#">Action Items</HeaderMenuItem>
       </HeaderNavigation>
       <HeaderGlobalBar>
