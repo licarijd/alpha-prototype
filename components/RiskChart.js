@@ -8,6 +8,7 @@ import "@carbon/charts/styles-g90.css";
 // IBM Plex should either be imported in your project by using Carbon
 // or consumed manually through an import
 export default function RiskChart() {
+  const risk = 87
 	const data = [
     {
       "group": "Gastrointestinal Health",
@@ -40,13 +41,26 @@ export default function RiskChart() {
     "title": '',
     "resizable": true,
     "legend": {
-      "alignment": "center"
+      "alignment": "center",
+      "truncation": {"threshold": 1000}
+      //"clickable": false
+    },
+    "tooltip": {
+      "truncation": {"threshold": 1000}
     },
     "donut": {
       "center": {
-        "label": "Your REDS and Overtraining Risk Percentage"
-      }, "alignment": "center"
+        "label": "Your REDS and Overtraining Risk",
+        "numberFontSize": () => "120px",
+        "titleFontSize": () => "30px",
+        "titleYPosition": n => 0.175*n,
+        "numberFormatter": () => risk/*s => `${s}%`*/
+      },
+      "alignment": "center"
     },
+    /*"pie": {
+      "labels": { "formatter": () => "example" }
+    },*/
     "height": "750px",
     "width": "100%"
   }

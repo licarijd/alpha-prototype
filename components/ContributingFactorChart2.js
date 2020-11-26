@@ -11,58 +11,58 @@ import "@carbon/charts/styles-g90.css";
 export default function ContributingFactorChart2() {
 	const data = [
 		{
-            "group": "Dataset 1",
+            "group": "Nutrition",
             "key": "Qty",
             "value": 34200
         },
         {
-            "group": "Dataset 1",
+            "group": "Nutrition",
             "key": "More",
             "value": 23500
         },
         {
-            "group": "Dataset 1",
+            "group": "Nutrition",
             "key": "Sold",
             "value": 53100
         },
         {
-            "group": "Dataset 1",
+            "group": "Nutrition",
             "key": "Restocking",
             "value": 42300
         },
         {
-            "group": "Dataset 1",
+            "group": "Nutrition",
             "key": "Misc",
             "value": 12300
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Qty",
             "value": 34200
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "More",
             "value": 53200
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Sold",
             "value": 42300
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Restocking",
             "value": 21400
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Misc",
             "value": 0
         }
 	]
 	const options = {
-    "title": "Line (discrete)",
+    "title": "Nutrition and Performance",
     "axes": {
       "bottom": {
         "title": "2019 Annual Sales Figures",

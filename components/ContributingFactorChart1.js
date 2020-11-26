@@ -11,53 +11,56 @@ import "@carbon/charts/styles-g90.css";
 export default function ContributingFactorChart1() {
 	const data = [
 		{
-			"group": "Dataset 1",
+			"group": "Gastrointestinal Health",
 			"key": "Qty",
 			"value": 34200
 		},
 		{
-			"group": "Dataset 1",
+			"group": "Gastrointestinal Health",
 			"key": "More",
 			"value": 23500
 		},
 		{
-			"group": "Dataset 1",
+			"group": "Gastrointestinal Health",
 			"key": "Sold",
 			"value": 53100
 		},
 		{
-			"group": "Dataset 1",
+			"group": "Gastrointestinal Health",
 			"key": "Restocking",
 			"value": 42300
 		},
 		{
-			"group": "Dataset 2",
+			"group": "Performance",
 			"key": "Qty",
 			"value": 34200
 		},
 		{
-			"group": "Dataset 2",
+			"group": "Performance",
 			"key": "More",
 			"value": 53200
 		},
 		{
-			"group": "Dataset 2",
+			"group": "Performance",
 			"key": "Sold",
 			"value": 42300
 		},
 		{
-			"group": "Dataset 2",
+			"group": "Performance",
 			"key": "Restocking",
 			"value": 21400
 		},
 		{
-			"group": "Dataset 2",
+			"group": "Performance",
 			"key": "Misc",
 			"value": 0
 		}
 	]
 	const options = {
-    "title": "Line (discrete)",
+	"title": "Gastrointestinal Health and Performance",
+	"legend": {
+    "truncation": {"threshold": 1000}
+	},
     "axes": {
       "bottom": {
         "title": "2019 Annual Sales Figures",

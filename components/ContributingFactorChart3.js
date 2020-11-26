@@ -11,53 +11,53 @@ import "@carbon/charts/styles-g90.css";
 export default function ContributingFactorChart3() {
 	const data = [
 		{
-			"group": "Dataset 3",
+			"group": "Sleep",
 			"key": "Qty",
 			"value": 34200
 		},
 		{
-			"group": "Dataset 3",
+			"group": "Sleep",
 			"key": "More",
 			"value": 23500
 		},
 		{
-			"group": "Dataset 3",
+			"group": "Sleep",
 			"key": "Sold",
 			"value": 53100
 		},
 		{
-			"group": "Dataset 3",
+			"group": "Sleep",
 			"key": "Restocking",
 			"value": 42300
 		},
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Qty",
             "value": 34200
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "More",
             "value": 53200
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Sold",
             "value": 42300
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Restocking",
             "value": 21400
         },
         {
-            "group": "Dataset 2",
+            "group": "Performance",
             "key": "Misc",
             "value": 0
         }
 	]
 	const options = {
-    "title": "Line (discrete)",
+    "title": "Sleep and Performance",
     "axes": {
       "bottom": {
         "title": "2019 Annual Sales Figures",
