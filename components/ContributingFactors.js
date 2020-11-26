@@ -1,5 +1,4 @@
 import React from "react";
-import { LineChart } from "@carbon/charts-react";
 import "@carbon/charts/styles-g90.css";
 // Or
 // import "@carbon/charts/styles/styles.scss";
@@ -13,10 +12,13 @@ import ContributingFactorChart3 from "./ContributingFactorChart3";
 
 export default function ContributingFactors() {
 	return (
-    <div className = 'contributing-factor'>
-      <ContributingFactorChart1/>
-      <ContributingFactorChart2/>
-      <ContributingFactorChart3/>
+    <div>
+      <div className='title'> Contributing Factors vs Performance </div>
+      <div className = 'contributing-factor'>
+        <ContributingFactorChart1/>
+        <ContributingFactorChart2/>
+        <ContributingFactorChart3/>
+      </div>
     </div>
 	);
 }

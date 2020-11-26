@@ -52,11 +52,14 @@ export default function RiskChart() {
   }
 
 	return (
-    <div className='risk-chart'>
-      <DonutChart
-        data={data}
-        options={options}>
-      </DonutChart>
+    <div>
+      <div className='title'> Contributing Factors to Your Risk of Overtraining and REDS</div>
+      <div className='risk-chart'>
+        <DonutChart
+          data={data}
+          options={options}>
+        </DonutChart>
+      </div>
     </div>
 	);
 }

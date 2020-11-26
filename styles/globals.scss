@@ -5,13 +5,27 @@ $carbon--theme: $carbon--theme--g90;
 
 .background {
   // Use the gray 100 theme
- //@include carbon--theme();
- //background-color: $ui-background;
- background-color: #282828;
+  //@include carbon--theme();
+  //background-color: $ui-background;
+  background-color: #282828;
+}
+
+.contributing-factor-info {
+  //display: block;
+  $carbon--theme: $carbon--theme--g10;
+  // Use the gray 10 theme
+  @include carbon--theme();
+  background-color: $ui-02;
+  position: absolute;
+  width: 17.5vw;
+  height: 40vh;
+  top: 25vh;
+  left: 75vw;
+  z-index: 1000;
 }
 
 .contributing-factor {
-  padding-left: 5vw;
+  padding-left: 6vw;
   padding-bottom: 10vh;
 }
 
@@ -19,9 +33,16 @@ $carbon--theme: $carbon--theme--g90;
   display: block;
   //width: 81%;
   //margin-right: 20vw;
-  padding-top: 20vh;
-  padding-bottom: 20vh;
+  padding-bottom: 2.5vh;
   background-color: #282828;
+}
+
+.title {
+  padding-left: 10vw;
+  padding-top: 10vh;
+  padding-bottom: 8vh;
+  color: white;
+  font-size: 300%;
 }
 
 html,
