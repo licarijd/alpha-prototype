@@ -17,17 +17,69 @@ $carbon--theme: $carbon--theme--g90;
   @include carbon--theme();
   background-color: $ui-02;
   position: absolute;
-  width: 17.5vw;
+  width: 18.5vw;
   height: 40vh;
   top: 25vh;
   left: 75vw;
   z-index: 1000;
   border-radius: 5px;
+
+  .title {
+    padding-left: 1vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    color: white;
+    font-size: 170%;
+  }
+
+  .group {
+    padding-bottom: 1.5vh;
+  }
+
+  .subtitle {
+    padding-left: 1vw;
+    padding-top: 1.5vh;
+    padding-bottom: 0;
+    color: white;
+    font-size: 120%;
+  }
+
+  .text {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 4vh;
+    padding-bottom: 0.5vh;
+    color: white;
+    font-size: 130%;
+  }
+
+  .link {
+    margin-top: 2vh;
+    margin-left: 1vw;
+    border: solid white;
+    border-radius: 5px;
+    border-color: white;
+    width: 16.5vw;
+    height: 60px;
+    background-color: black;
+    font-size: 170%;
+    color: white;
+    text-align: center;
+    padding-top: 1.5vh;
+  }
+}
+
+.contributing-factors {
+  padding-left: 6vw;
+}
+
+.training-and-performance {
+  padding-left: 6vw;
 }
 
 .contributing-factor {
   padding-left: 6vw;
-  padding-bottom: 10vh;
+  padding-bottom: 5vh;
 }
 
 .risk-chart {
@@ -44,6 +96,14 @@ $carbon--theme: $carbon--theme--g90;
   padding-bottom: 8vh;
   color: white;
   font-size: 300%;
+}
+
+.subtitle {
+  padding-top: 2vh;
+  padding-left: 6vw;
+  padding-bottom: 5vh;
+  color: white;
+  font-size: 200%;
 }
 
 html,

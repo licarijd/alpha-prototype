@@ -8,36 +8,39 @@ import "@carbon/charts/styles-g90.css";
 // or consumed manually through an import
 //import "./ibm-plex-font.css";
 
-export default function ContributingFactorChart3() {
+export default function ContributingFactorChart1a() {
 	const data = [
 		{
-			"group": "Hours of Sleep Daily",
+			"group": "Daily Dairy Intake (mL)",
 			"key": "September",
-			"value": 8.5
+			"value": 250
 		},
 		{
-			"group": "Hours of Sleep Daily",
+			"group": "Daily Dairy Intake (mL)",
 			"key": "October",
-			"value": 8.5
+			"value": 300
 		},
 		{
-			"group": "Hours of Sleep Daily",
+			"group": "Daily Dairy Intake (mL)",
 			"key": "November",
-			"value": 7.5
+			"value": 450
 		},
 		{
-			"group": "Hours of Sleep Daily",
+			"group": "Daily Dairy Intake (mL)",
 			"key": "December",
-			"value": 7.1
+			"value": 750
 		},
 		{
-			"group": "Hours of Sleep Daily",
-			"key": "December",
-			"value": 7.2
+			"group": "Daily Dairy Intake (mL)",
+			"key": "January",
+			"value": 750
 		}
 	]
 	const options = {
-    "title": "Sleep and Performance",
+	"title": "Nutrition and Performance",
+	"legend": {
+    "truncation": {"threshold": 1000}
+	},
     "axes": {
       "bottom": {
         "title": "Month",
@@ -46,7 +49,7 @@ export default function ContributingFactorChart3() {
       },
       "left": {
         "mapsTo": "value",
-        "title": "Hours of Sleep Daily",
+        "title": "Daily Dairy Intake (mL)",
         "scaleType": "linear"
       }
     },

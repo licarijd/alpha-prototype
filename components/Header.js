@@ -21,7 +21,7 @@ const NavHeader = () => (
         ALPHA
       </HeaderName>
       <HeaderNavigation aria-label="One Athlete [ALPHA]">
-      <HeaderMenu aria-label="Questionnaires" menuLinkName="Questionnaires">
+      <HeaderMenu aria-label="Tests" menuLinkName="Tests">
           <HeaderMenuItem href="#">This Month</HeaderMenuItem>
           <HeaderMenuItem href="#">This Week</HeaderMenuItem>
           <HeaderMenuItem href="#">Today</HeaderMenuItem>

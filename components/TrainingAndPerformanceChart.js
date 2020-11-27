@@ -8,53 +8,58 @@ import "@carbon/charts/styles-g90.css";
 // or consumed manually through an import
 //import "./ibm-plex-font.css";
 
-export default function ContributingFactorChart1() {
+export default function TrainingAndPerformanceChart() {
 	const data = [
 		{
-			"group": "Gastrointestinal Health",
-			"key": "Qty",
-			"value": 34200
-		},
-		{
-			"group": "Gastrointestinal Health",
-			"key": "More",
-			"value": 23500
-		},
-		{
-			"group": "Gastrointestinal Health",
-			"key": "Sold",
-			"value": 53100
-		},
-		{
-			"group": "Gastrointestinal Health",
-			"key": "Restocking",
-			"value": 42300
+			"group": "Performance",
+			"key": "September",
+			"value": 80
 		},
 		{
 			"group": "Performance",
-			"key": "Qty",
-			"value": 34200
+			"key": "October",
+			"value": 78
 		},
 		{
 			"group": "Performance",
-			"key": "More",
-			"value": 53200
+			"key": "November",
+			"value": 70
 		},
 		{
 			"group": "Performance",
-			"key": "Sold",
-			"value": 42300
+			"key": "December",
+			"value": 71
 		},
 		{
 			"group": "Performance",
-			"key": "Restocking",
-			"value": 21400
+			"key": "January",
+			"value": 65
 		},
-		{
-			"group": "Performance",
-			"key": "Misc",
-			"value": 0
-		}
+    {
+      "group": "Training Intensity",
+      "key": "September",
+      "value": 34
+    },
+    {
+      "group": "Training Intensity",
+      "key": "October",
+      "value": 56
+    },
+    {
+      "group": "Training Intensity",
+      "key": "November",
+      "value": 59
+    },
+    {
+      "group": "Training Intensity",
+      "key": "December",
+      "value": 80
+    },
+    {
+      "group": "Training Intensity",
+      "key": "January",
+      "value": 79
+    }
 	]
 	const options = {
 	"title": "Gastrointestinal Health and Performance",
@@ -63,7 +68,7 @@ export default function ContributingFactorChart1() {
 	},
     "axes": {
       "bottom": {
-        "title": "2019 Annual Sales Figures",
+        "title": "Month",
         "mapsTo": "key",
         "scaleType": "labels"
       },
@@ -78,7 +83,7 @@ export default function ContributingFactorChart1() {
   }
 	
 	return (
-    <div className = 'contributing-factor'>
+    <div className = 'training-and-performance'>
       <LineChart
         data={data}
         options={options}>

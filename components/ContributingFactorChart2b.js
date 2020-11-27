@@ -8,36 +8,36 @@ import "@carbon/charts/styles-g90.css";
 // or consumed manually through an import
 //import "./ibm-plex-font.css";
 
-export default function ContributingFactorChart3() {
+export default function ContributingFactorChart2b() {
 	const data = [
 		{
-			"group": "Hours of Sleep Daily",
-			"key": "September",
-			"value": 8.5
-		},
-		{
-			"group": "Hours of Sleep Daily",
-			"key": "October",
-			"value": 8.5
-		},
-		{
-			"group": "Hours of Sleep Daily",
-			"key": "November",
-			"value": 7.5
-		},
-		{
-			"group": "Hours of Sleep Daily",
-			"key": "December",
-			"value": 7.1
-		},
-		{
-			"group": "Hours of Sleep Daily",
-			"key": "December",
-			"value": 7.2
-		}
+            "group": "Daily Caloric Intake",
+            "key": "September",
+            "value": 2500
+        },
+        {
+            "group": "Daily Caloric Intake",
+            "key": "October",
+            "value": 2550
+        },
+        {
+            "group": "Daily Caloric Intake",
+            "key": "November",
+            "value": 2450
+        },
+        {
+            "group": "Daily Caloric Intake",
+            "key": "December",
+            "value": 2500
+        },
+        {
+            "group": "Daily Caloric Intake",
+            "key": "January",
+            "value": 2475
+        }
 	]
 	const options = {
-    "title": "Sleep and Performance",
+    "title": "Gastrointestinal Health and Performance",
     "axes": {
       "bottom": {
         "title": "Month",
@@ -46,7 +46,7 @@ export default function ContributingFactorChart3() {
       },
       "left": {
         "mapsTo": "value",
-        "title": "Hours of Sleep Daily",
+        "title": "Daily Caloric Intake",
         "scaleType": "linear"
       }
     },
