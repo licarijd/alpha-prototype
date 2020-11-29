@@ -37,7 +37,7 @@ export default function ContributingFactorChart1a() {
 		}
 	]
 	const options = {
-	"title": "Nutrition and Performance",
+	"title": "Daily Dairy Intake",
 	"legend": {
     "truncation": {"threshold": 1000}
 	},

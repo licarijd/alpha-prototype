@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <div className="background">
       <Header></Header>
-      <ContributingFactorInfo/>
       <RiskChart/>
       <TrainingAndPerformance/>
       <ContributingFactors/>

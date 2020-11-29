@@ -11,33 +11,36 @@ import "@carbon/charts/styles-g90.css";
 export default function ContributingFactorChart2a() {
 	const data = [
 		{
-            "group": "Grams of Carbohydrates Daily",
+            "group": "Daily Carbohydrate Intake (grams)",
             "key": "September",
             "value": 500
         },
         {
-            "group": "Grams of Carbohydrates Daily",
+            "group": "Daily Carbohydrate Intake (grams)",
             "key": "October",
             "value": 511
         },
         {
-            "group": "Grams of Carbohydrates Daily",
+            "group": "Daily Carbohydrate Intake (grams)",
             "key": "November",
             "value": 489
         },
         {
-            "group": "Grams of Carbohydrates Daily",
+            "group": "Daily Carbohydrate Intake (grams)",
             "key": "December",
             "value": 305
         },
         {
-            "group": "Grams of Carbohydrates Daily",
+            "group": "Daily Carbohydrate Intake (grams)",
             "key": "January",
             "value": 250
         }
 	]
 	const options = {
-    "title": "Gastrointestinal Health and Performance",
+    "title": "Daily Carbohydrate Intake",
+    "legend": {
+      "truncation": {"threshold": 1000}
+    },
     "axes": {
       "bottom": {
         "title": "Month",
@@ -46,7 +49,7 @@ export default function ContributingFactorChart2a() {
       },
       "left": {
         "mapsTo": "value",
-        "title": "Grams of Carbohydrates Daily",
+        "title": "Daily Carbohydrate Intake (grams)",
         "scaleType": "linear"
       }
     },

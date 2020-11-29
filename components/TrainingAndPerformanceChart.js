@@ -62,7 +62,7 @@ export default function TrainingAndPerformanceChart() {
     }
 	]
 	const options = {
-	"title": "Gastrointestinal Health and Performance",
+	"title": "",
 	"legend": {
     "truncation": {"threshold": 1000}
 	},

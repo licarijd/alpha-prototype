@@ -37,7 +37,10 @@ export default function ContributingFactorChart2b() {
         }
 	]
 	const options = {
-    "title": "Gastrointestinal Health and Performance",
+    "title": "Daily Caloric Intake",
+    "legend": {
+      "truncation": {"threshold": 1000}
+    },
     "axes": {
       "bottom": {
         "title": "Month",

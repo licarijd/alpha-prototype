@@ -37,7 +37,10 @@ export default function ContributingFactorChart3() {
 		}
 	]
 	const options = {
-    "title": "Sleep and Performance",
+	"title": "Hours of Sleep Daily",
+	"legend": {
+		"truncation": {"threshold": 1000}
+		},
     "axes": {
       "bottom": {
         "title": "Month",

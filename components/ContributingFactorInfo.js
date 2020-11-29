@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@carbon/charts/styles-g90.css";
 // Or
 // import "@carbon/charts/styles/styles.scss";
@@ -6,17 +6,15 @@ import "@carbon/charts/styles-g90.css";
 // IBM Plex should either be imported in your project by using Carbon
 // or consumed manually through an import
 
-export default function ContributingFactorInfo() {
+export default function ContributingFactorInfo(props) {
 	return (
     <div className='contributing-factor-info'>
-        <div className='title'> Gastrointestinal Health </div>
+        <div className='title'> {props.data.key} </div>
         <div className='group'>
-            <div className='subtitle'> Current Fibre Intake: 30g Daily </div>
-            <div className='subtitle'> Recommended Fibre Intake: 40g Daily </div>
+            <div className='subtitle'> {props.data.points && props.data.points.points && props.data.points.points[0]} </div>
         </div>
         <div className='group'>
-          <div className='subtitle'> Current Dairy Intake: 750mL Daily </div>
-          <div className='subtitle'> Recommended Dairy Intake: 250g Daily </div>
+          <div className='subtitle'> {props.data.points && props.data.points.points && props.data.points.points[1]} </div>
         </div>
         <div className='text'> See your action items to reduce your risk of overtraining and REDS. </div>
         <div className='link'> Action Items </div>

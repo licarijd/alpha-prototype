@@ -37,7 +37,7 @@ export default function ContributingFactorChart1b() {
 		}
 	]
 	const options = {
-	"title": "Nutrition and Performance",
+	"title": "Daily Fibre Intake",
 	"legend": {
     "truncation": {"threshold": 1000}
 	},
