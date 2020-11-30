@@ -83,7 +83,7 @@ export default function TrainingAndPerformanceChart() {
   }
 	
 	return (
-    <div className = 'training-and-performance'>
+    <div className = 'index-chart-1'>
       <LineChart
         data={data}
         options={options}>

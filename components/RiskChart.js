@@ -45,14 +45,6 @@ class RiskChart extends React.Component {
       {
         "group": "Training and Life Stress",
         "value": 5
-      },
-      {
-        "group": "Mood States",
-        "value": 5
-      },
-      {
-        "group": "Misc",
-        "value": 4
       }
     ]
     
