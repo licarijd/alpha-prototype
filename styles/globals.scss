@@ -41,7 +41,7 @@ $carbon--theme: $carbon--theme--g90;
   @include mobile {
     .link {
       padding-top: 0;
-      width: 35vw;
+      width: 45vw;
       font-size: 16px;
       height: 40px;
       border-radius: 50px;
@@ -115,6 +115,11 @@ $carbon--theme: $carbon--theme--g90;
   color: white;
   text-align: center;
   padding-top: 1.5vh;
+}
+
+.icon-image {
+  color: white;
+  padding-left: 2vw;
 }
 
 .contributing-factors {

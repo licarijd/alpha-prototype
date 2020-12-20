@@ -6,11 +6,14 @@ import "@carbon/charts/styles-g90.css";
 // IBM Plex should either be imported in your project by using Carbon
 // or consumed manually through an import
 
-export default function InfoBanner({ title, subtitle, button }) {
+export default function InfoBanner({ title, icon, subtitle, button }) {
 	return (
     <div className='info-banner'>
         <div className='border'/>
-        <div className='subtitle'> {title} </div>
+        <span className='subtitle'>
+          {title}
+          { icon && <span className='icon-image'> <icon.image/> </span> }
+        </span>
         <div className='subtitle-small'> {subtitle} </div>
         {
           button && <button className='link'> {button.text} </button>

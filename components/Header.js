@@ -1,6 +1,6 @@
 import React from "react";
-import User20 from "@carbon/icons-react/lib/user/20";
-import Notification20 from "@carbon/icons-react/lib/notification/20";
+import Notebook20 from "@carbon/icons-react/lib/notebook/20";
+import HealthCross20 from "@carbon/icons-react/lib/health-cross/20";
 import AppSwitcher20 from "@carbon/icons-react/lib/app-switcher/20";
 import {
   Header,
@@ -30,11 +30,11 @@ const NavHeader = () => (
         <HeaderMenuItem href="#">Action Items</HeaderMenuItem>
       </HeaderNavigation>
       <HeaderGlobalBar>
-        <HeaderGlobalAction aria-label="Notifications" onClick={() => {}}>
-          <Notification20 />
+        <HeaderGlobalAction aria-label="Tests" onClick={() => {}}>
+          <Notebook20 />
         </HeaderGlobalAction>
-        <HeaderGlobalAction aria-label="User" onClick={() => {}}>
-          <User20 />
+        <HeaderGlobalAction aria-label="Action Items" onClick={() => {}}>
+          <HealthCross20 />
         </HeaderGlobalAction>
         <HeaderGlobalAction aria-label="App Switcher" onClick={() => {}}>
           <AppSwitcher20 />
