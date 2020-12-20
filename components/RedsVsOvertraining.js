@@ -11,7 +11,7 @@ import RedsVsOvertrainingChart from "./RedsVsOvertrainingChart";
 export default function RedsVsOvertraining() {
 	return (
     <div>
-      <div className='title'> Overtraining Risk vs REDS Risk Breakdown </div>
+      <div className='title chart'> Overtraining Risk vs REDS Risk Breakdown </div>
       <div className = 'contributing-factors'>
           <RedsVsOvertrainingChart/>
       </div>

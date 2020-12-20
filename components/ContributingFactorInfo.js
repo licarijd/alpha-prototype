@@ -11,10 +11,10 @@ export default function ContributingFactorInfo(props) {
     <div className='contributing-factor-info'>
         <div className='title'> {props.data.key} </div>
         <div className='group'>
-            <div className='subtitle'> {props.data.points && props.data.points.points && props.data.points.points[0]} </div>
+            <div className='title-small'> {props.data.points && props.data.points.points && props.data.points.points[0]} </div>
         </div>
         <div className='group'>
-          <div className='subtitle'> {props.data.points && props.data.points.points && props.data.points.points[1]} </div>
+          <div className='title-small'> {props.data.points && props.data.points.points && props.data.points.points[1]} </div>
         </div>
         <div className='text'> See your action items to reduce your risk of overtraining and REDS. </div>
         <div className='link'> Action Items </div>

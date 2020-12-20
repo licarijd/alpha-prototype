@@ -15,15 +15,14 @@ import ContributingFactorChart3 from "./ContributingFactorChart3";
 export default function ContributingFactors() {
 	return (
     <div>
-      <div className='title'> Top Contributing Factors to Overtraining and REDS Risk </div>
       <div className = 'contributing-factors'>
-        <div className='subtitle'> Gastrointestinal Health Factors </div>
+        <div className='title-small'> Gastrointestinal Health Trends </div>
         <ContributingFactorChart2a/>
         <ContributingFactorChart2b/>
-        <div className='subtitle'> Nutritional Factors </div>
+        <div className='title-small'> Nutritional Trends </div>
         <ContributingFactorChart1a/>
         <ContributingFactorChart1b/>
-        <div className='subtitle'> Sleep Factors </div>
+        <div className='title-small'> Sleep Trends </div>
         <ContributingFactorChart3/>
       </div>
     </div>

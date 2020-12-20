@@ -3,6 +3,7 @@ import { DonutChart } from "@carbon/charts-react";
 import "@carbon/charts/styles-g90.css";
 import ContributingFactorInfo from "./ContributingFactorInfo";
 import { contributingFactorInfo } from '../mock-data/appData'
+import MediaQuery from 'react-responsive'
 //import './styles.scss'
 // Or
 // //import "@carbon/charts/styles/styles.scss";
@@ -48,7 +49,7 @@ class RiskChart extends React.Component {
       }
     ]
     
-    const options = {
+    const optionsDesktop = {
       //"title": "REDS and Overtraining Risk - Contributing Factors",
       "title": '',
       "resizable": true,
@@ -74,19 +75,45 @@ class RiskChart extends React.Component {
         "labels": { "formatter": () => "example" }
       },*/
       "height": "750px",
-      "width": "100%"
+      "width": "90%"
+    }
+
+    const optionsMobile = {
+      //"title": "REDS and Overtraining Risk - Contributing Factors",
+      "title": '',
+      "resizable": true,
+      "legend": {
+        "alignment": "bottom",
+        "truncation": {"threshold": 1000}
+      },
+      "tooltip": {
+        "truncation": {"threshold": 1000}
+      },
+      "donut": {
+        "center": {
+          "label": "Your Risk Percentage (High)",
+          "numberFontSize": () => "75px",
+          "titleFontSize": () => "14px",
+          "titleYPosition": n => 0.175*n,
+          "numberFormatter": () => risk/*s => `${s}%`*/
+        },
+        "alignment": "center"
+      },
+      "height": "350px",
+      "width": "92.5%"
     }
     const key = this.state.selectedSliceKey || "Gastrointestinal Health"
     return (
       <div className='risk-chart-container'>
         <ContributingFactorInfo data={ {key, points: this.state.selectedSliceData || contributingFactorInfo["Gastrointestinal Health"].points} }></ContributingFactorInfo>
-        <div className='title'> Contributing Factors to Your Risk of Overtraining and REDS</div>
+        <div className='title page-title'> Contributing Factors</div>
+        <div className='subtitle'>  to Your Risk of Overtraining and REDS </div>
         <div className='risk-chart'>
           <DonutChart
-            data={data}
-            options={options}
-            ref={chartRef => (this.chartRef = chartRef)}>
-          </DonutChart>
+              data={data}
+              options={optionsMobile}
+              ref={chartRef => (this.chartRef = chartRef)}>
+            </DonutChart>
         </div>
       </div>
     )

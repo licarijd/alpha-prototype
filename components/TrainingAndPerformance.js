@@ -11,7 +11,7 @@ import TrainingAndPerformanceChart from "./TrainingAndPerformanceChart";
 export default function TrainingAndPerformance() {
 	return (
     <div>
-      <div className='title'> Training Intensity vs Performance </div>
+      <div className='title chart'> Training Intensity vs Performance </div>
       <div className = 'contributing-factors'>
           <TrainingAndPerformanceChart/>
       </div>

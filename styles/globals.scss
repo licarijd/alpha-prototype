@@ -3,11 +3,51 @@
 
 $carbon--theme: $carbon--theme--g90;
 
+@mixin mobile {
+  @media (max-width: 1223px) {
+    @content
+  }
+}
+
 .background {
   // Use the gray 100 theme
   //@include carbon--theme();
   //background-color: $ui-background;
   background-color: #282828;
+}
+
+.info-banner {
+  margin-top: 0;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  text-align: center;
+  font-size: 18px;
+
+  .border {
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    $carbon--theme: $carbon--theme--g10;
+    // Use the gray 10 theme
+    @include carbon--theme();
+    background-color: $ui-03;
+    height: 0.25vh;
+  }
+
+  .subtitle {
+    padding-bottom: 0;
+    font-size: 30px;
+  }
+
+  @include mobile {
+    .link {
+      padding-top: 0;
+      width: 35vw;
+      font-size: 16px;
+      height: 40px;
+      border-radius: 50px;
+      border-width: 1px;
+    }
+  }
 }
 
 .contributing-factor-info {
@@ -24,6 +64,14 @@ $carbon--theme: $carbon--theme--g90;
   z-index: 1000;
   border-radius: 5px;
 
+  @include mobile {
+    visibility: hidden;
+    top: 22.5vh;
+    left: 10vw;
+    width: 80vw;
+    height: 52.5vh;
+  }
+
   .title {
     padding-left: 1vw;
     padding-top: 2vh;
@@ -36,7 +84,7 @@ $carbon--theme: $carbon--theme--g90;
     padding-bottom: 1.5vh;
   }
 
-  .subtitle {
+  .title-small {
     padding-left: 1vw;
     padding-top: 1.5vh;
     padding-bottom: 0;
@@ -52,25 +100,30 @@ $carbon--theme: $carbon--theme--g90;
     color: white;
     font-size: 130%;
   }
+}
 
-  .link {
-    margin-top: 2vh;
-    margin-left: 1vw;
-    border: solid white;
-    border-radius: 5px;
-    border-color: white;
-    width: 16.5vw;
-    height: 60px;
-    background-color: black;
-    font-size: 170%;
-    color: white;
-    text-align: center;
-    padding-top: 1.5vh;
-  }
+.link {
+  margin-top: 2vh;
+  margin-left: 1vw;
+  border: solid white;
+  border-radius: 5px;
+  border-color: white;
+  width: 16.5vw;
+  height: 60px;
+  background-color: black;
+  font-size: 170%;
+  color: white;
+  text-align: center;
+  padding-top: 1.5vh;
 }
 
 .contributing-factors {
   padding-left: 6vw;
+
+  @include mobile {
+    padding-left: 0;
+    padding-bottom: 5vh;
+  }
 }
 
 .index-chart-1 {
@@ -90,8 +143,15 @@ $carbon--theme: $carbon--theme--g90;
   display: block;
   //width: 81%;
   //margin-right: 20vw;
+  padding-left: 5vw;
   padding-bottom: 2.5vh;
   background-color: #282828;
+  
+  @include mobile {
+    padding-left: 7.5vw;
+    font-size: 225%;
+    padding-bottom: 2vh;
+  }
 }
 
 .title {
@@ -100,14 +160,55 @@ $carbon--theme: $carbon--theme--g90;
   padding-bottom: 8vh;
   color: white;
   font-size: 300%;
+
+  @include mobile {
+    padding-left: 4.5vw;
+    font-size: 215%;
+    padding-bottom: 1vh;
+    padding-top: 2vh;
+    margin-right: 10vw;
+
+    &.chart{
+      padding-bottom: 2.5vh;
+    }
+
+    &.page-title {
+      padding-top: 10vh;
+    }
+
+    &.center {
+      text-align: center;
+    }
+  }
 }
 
-.subtitle {
+.title-small {
   padding-top: 2vh;
   padding-left: 6vw;
   padding-bottom: 5vh;
   color: white;
   font-size: 200%;
+}
+
+.subtitle {
+  padding-left: 5vw;
+  padding-right: 4vw;
+  padding-bottom: 5vh;
+  color: white;
+  font-size: 125%;
+
+  &.center {
+    text-align: center;
+  }
+}
+
+.subtitle-small {
+  padding-top: 1vh;
+  padding-left: 5vw;
+  padding-right: 4vw;
+  padding-bottom: 1vh;
+  color: white;
+  font-size: 16px;
 }
 
 html,
