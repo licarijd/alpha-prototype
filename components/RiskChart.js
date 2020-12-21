@@ -4,6 +4,7 @@ import "@carbon/charts/styles-g90.css";
 import ContributingFactorInfo from "./ContributingFactorInfo";
 import { contributingFactorInfo } from '../mock-data/appData'
 import MediaQuery from 'react-responsive'
+import { MAX_BREAKPOINT_MOBILE } from "../constants";
 //import './styles.scss'
 // Or
 // //import "@carbon/charts/styles/styles.scss";
@@ -16,11 +17,14 @@ class RiskChart extends React.Component {
     super()
     this.state = {
       selectedSliceData: undefined,
-      selectedSliceKey: undefined
+      selectedSliceKey: undefined,
+      screenWidth: undefined
     }
   }
 
   componentDidMount() {
+    if(window)
+      this.setState({ screenWidth: window.innerWidth })
     this.chartRef.chart.services.events.addEventListener("pie-slice-click", e => {
       console.log(e.detail.datum.data.group)
       this.setState({ selectedSliceData: contributingFactorInfo[e.detail.datum.data.group] })
@@ -107,11 +111,11 @@ class RiskChart extends React.Component {
       <div className='risk-chart-container'>
         <ContributingFactorInfo data={ {key, points: this.state.selectedSliceData || contributingFactorInfo["Gastrointestinal Health"].points} }></ContributingFactorInfo>
         <div className='title page-title'> Contributing Factors</div>
-        <div className='subtitle'>  to Your Risk of Overtraining and REDS </div>
+        <div className='subtitle page-title'>  to Your Risk of Overtraining and REDS </div>
         <div className='risk-chart'>
           <DonutChart
               data={data}
-              options={optionsMobile}
+              options={this.state.screenWidth > MAX_BREAKPOINT_MOBILE ? optionsDesktop : optionsMobile}
               ref={chartRef => (this.chartRef = chartRef)}>
             </DonutChart>
         </div>

@@ -20,7 +20,7 @@ export default function Home() {
       />
       <RedsVsOvertraining/>
       <InfoBanner
-        title={'Complete your tests'}
+        title={'Complete your Tests'}
         icon={{image:Notebook32}}
         subtitle={'to ensure your REDS and overtraining risk scores are up to date.'}
         button={{text: 'Tests', link: undefined}}

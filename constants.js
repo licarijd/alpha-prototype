@@ -1,0 +1,2 @@
+export const MAX_BREAKPOINT_MOBILE = 700
+export const MAX_BREAKPOINT_MEDIUM = 1200

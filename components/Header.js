@@ -20,15 +20,15 @@ const NavHeader = () => (
       <HeaderName href="#" prefix="One Athlete">
         ALPHA
       </HeaderName>
-      <HeaderNavigation aria-label="One Athlete [ALPHA]">
-      <HeaderMenu aria-label="Tests" menuLinkName="Tests">
+      {/*<HeaderNavigation aria-label="One Athlete [ALPHA]">
+        <HeaderMenu aria-label="Tests" menuLinkName="Tests">
           <HeaderMenuItem href="#">This Month</HeaderMenuItem>
           <HeaderMenuItem href="#">This Week</HeaderMenuItem>
           <HeaderMenuItem href="#">Today</HeaderMenuItem>
         </HeaderMenu>
         <HeaderMenuItem href="#">Custom Trends</HeaderMenuItem>
         <HeaderMenuItem href="#">Action Items</HeaderMenuItem>
-      </HeaderNavigation>
+      </HeaderNavigation>*/}
       <HeaderGlobalBar>
         <HeaderGlobalAction aria-label="Tests" onClick={() => {}}>
           <Notebook20 />

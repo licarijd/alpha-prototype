@@ -4,7 +4,13 @@
 $carbon--theme: $carbon--theme--g90;
 
 @mixin mobile {
-  @media (max-width: 1223px) {
+  @media (max-width: 700px) {
+    @content
+  }
+}
+
+@mixin medium {
+  @media (max-width: 1200px) {
     @content
   }
 }
@@ -17,7 +23,7 @@ $carbon--theme: $carbon--theme--g90;
 }
 
 .info-banner {
-  margin-top: 0;
+  margin-top: 1vh;
   padding-top: 2vh;
   padding-bottom: 2vh;
   text-align: center;
@@ -35,17 +41,16 @@ $carbon--theme: $carbon--theme--g90;
 
   .subtitle {
     padding-bottom: 0;
-    font-size: 30px;
+    font-size: 44px;
+
+    @include mobile {
+      font-size: 30px;
+    }
   }
 
   @include mobile {
     .link {
-      padding-top: 0;
       width: 45vw;
-      font-size: 16px;
-      height: 40px;
-      border-radius: 50px;
-      border-width: 1px;
     }
   }
 }
@@ -64,8 +69,9 @@ $carbon--theme: $carbon--theme--g90;
   z-index: 1000;
   border-radius: 5px;
 
+  visibility: hidden;
+
   @include mobile {
-    visibility: hidden;
     top: 22.5vh;
     left: 10vw;
     width: 80vw;
@@ -106,24 +112,34 @@ $carbon--theme: $carbon--theme--g90;
   margin-top: 2vh;
   margin-left: 1vw;
   border: solid white;
-  border-radius: 5px;
   border-color: white;
   width: 16.5vw;
-  height: 60px;
   background-color: black;
-  font-size: 170%;
   color: white;
   text-align: center;
-  padding-top: 1.5vh;
+  padding-top: 0;
+  font-size: 16px;
+  height: 40px;
+  border-radius: 50px;
+  border-width: 1px;
 }
 
 .icon-image {
   color: white;
-  padding-left: 2vw;
+  padding-left: 0;
+
+  @include mobile {
+    padding-left: 2vw;
+  }
+
+  @include medium {
+    padding-left: 0.5vw;
+  }
 }
 
 .contributing-factors {
   padding-left: 6vw;
+  padding-bottom: 2vh;
 
   @include mobile {
     padding-left: 0;
@@ -161,10 +177,15 @@ $carbon--theme: $carbon--theme--g90;
 
 .title {
   padding-left: 10vw;
-  padding-top: 10vh;
-  padding-bottom: 8vh;
+  padding-top: 4vh;
+  padding-bottom: 4vh;
   color: white;
   font-size: 300%;
+
+  &.page-title {
+    padding-bottom: 1vh;
+    padding-top: 8vh;
+  }
 
   @include mobile {
     padding-left: 4.5vw;
@@ -178,7 +199,7 @@ $carbon--theme: $carbon--theme--g90;
     }
 
     &.page-title {
-      padding-top: 10vh;
+      padding-top: 7vh;
     }
 
     &.center {
@@ -200,7 +221,15 @@ $carbon--theme: $carbon--theme--g90;
   padding-right: 4vw;
   padding-bottom: 5vh;
   color: white;
-  font-size: 125%;
+  font-size: 22px;
+
+  &.page-title {
+    padding-left: 10vw;
+    @include mobile {
+      padding-left: 5vw;
+      font-size: 16px;
+    }
+  }
 
   &.center {
     text-align: center;
@@ -213,7 +242,11 @@ $carbon--theme: $carbon--theme--g90;
   padding-right: 4vw;
   padding-bottom: 1vh;
   color: white;
-  font-size: 16px;
+  font-size: 22px;
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
 
 html,
