@@ -17,7 +17,7 @@ export default function ContributingFactorInfo(props) {
           <div className='title-small'> {props.data.points && props.data.points.points && props.data.points.points[1]} </div>
         </div>
         <div className='text'> See your action items to reduce your risk of overtraining and REDS. </div>
-        <div className='link'> Action Items </div>
+        <div className='link modal'> Action Items </div>
     </div>
 	);
 }

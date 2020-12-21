@@ -15,6 +15,18 @@ $carbon--theme: $carbon--theme--g90;
   }
 }
 
+@mixin large {
+  @media (max-width: 1450px) {
+    @content
+  }
+}
+
+@mixin very-large {
+  @media (max-width: 1750px) {
+    @content
+  }
+}
+
 .background {
   // Use the gray 100 theme
   //@include carbon--theme();
@@ -73,7 +85,19 @@ $carbon--theme: $carbon--theme--g90;
   z-index: 1000;
   border-radius: 5px;
 
-  visibility: hidden;
+  @include large {
+    top: 10vh;
+    left: 79vw;
+    height: 41vh;
+  }
+
+  @include medium {
+    visibility: hidden;
+
+    &.active {
+      visibility: visible;
+    }
+  }
 
   @include mobile {
     top: 22.5vh;
@@ -84,6 +108,7 @@ $carbon--theme: $carbon--theme--g90;
 
   .title {
     padding-left: 1vw;
+    padding-right: 1vw;
     padding-top: 2vh;
     padding-bottom: 2vh;
     color: white;
@@ -96,6 +121,7 @@ $carbon--theme: $carbon--theme--g90;
 
   .title-small {
     padding-left: 1vw;
+    padding-right: 1vw;
     padding-top: 1.5vh;
     padding-bottom: 0;
     color: white;
@@ -105,10 +131,18 @@ $carbon--theme: $carbon--theme--g90;
   .text {
     padding-left: 1vw;
     padding-right: 1vw;
-    padding-top: 4vh;
+    padding-top: 8vh;
     padding-bottom: 0.5vh;
     color: white;
     font-size: 130%;
+
+    @include very-large {
+      padding-top: 3.5vh;
+    }
+
+    @include large {
+      padding-top: 2vh;
+    }
   }
 }
 
@@ -126,6 +160,12 @@ $carbon--theme: $carbon--theme--g90;
   height: 50px;
   border-radius: 50px;
   border-width: 1px;
+
+  &.modal {
+    padding-top: 11px; 
+    position: absolute;
+    bottom: 1vh;
+  }
 
   @include mobile {
     font-size: 16px;
