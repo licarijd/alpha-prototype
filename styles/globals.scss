@@ -24,7 +24,7 @@ $carbon--theme: $carbon--theme--g90;
 
 .info-banner {
   margin-top: 1vh;
-  padding-top: 2vh;
+  padding-top: 3vh;
   padding-bottom: 2vh;
   text-align: center;
   font-size: 18px;
@@ -49,6 +49,10 @@ $carbon--theme: $carbon--theme--g90;
   }
 
   @include mobile {
+    padding-top: 0;
+    &.top {
+      padding-top: 3vh;
+    }
     .link {
       width: 45vw;
     }
@@ -118,10 +122,15 @@ $carbon--theme: $carbon--theme--g90;
   color: white;
   text-align: center;
   padding-top: 0;
-  font-size: 16px;
-  height: 40px;
+  font-size: 22px;
+  height: 50px;
   border-radius: 50px;
   border-width: 1px;
+
+  @include mobile {
+    font-size: 16px;
+    height: 40px;
+  }
 }
 
 .icon-image {
