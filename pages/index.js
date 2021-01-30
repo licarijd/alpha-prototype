@@ -7,16 +7,36 @@ import RedsVsOvertraining from '../components/RedsVsOvertraining'
 import RiskChart from '../components/RiskChart'
 import TrainingAndPerformance from '../components/TrainingAndPerformance'
 
+const actionItemsInfo = {
+  title: 'Reduce your Risk',
+  subtitle: 'of developing REDS or overtraining.',
+  buttonText: 'Action Items'
+}
+
+const samplePromo1 = {
+  title: 'Optimize your Workouts',
+  subtitle: 'With AI Endurance',
+  buttonText: 'Learn More'
+}
+
+const samplePromo2 = {
+  title: 'Improve Recovery with Regen-X',
+  subtitle: 'Promo Code: ONEATHLETE',
+  buttonText: 'Learn More'
+}
+
+const activeItem = actionItemsInfo
+
 export default function Home() {
   return (
     <div className="background">
       <Header></Header>
       <RiskChart/>
       <InfoBanner
-        title={'Reduce your Risk'}
+        title={activeItem.title}
         icon={{image:HealthCross32}}
-        subtitle={'of developing REDS or overtraining.'}
-        button={{text: 'Action Items', link: undefined}}
+        subtitle={activeItem.subtitle}
+        button={{text: activeItem.buttonText, link: undefined}}
       />
       <RedsVsOvertraining/>
       <InfoBanner
