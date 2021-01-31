@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const uuidv1 = require('uuid/v1');
 const { TIME_ONE_HOUR } = require ('../constants/constants')
 
@@ -19,7 +19,7 @@ const createSession = () => {
       return sess
 } 
 
-const hashPassword = (passwordText) => {
+/*const hashPassword = (passwordText) => {
     return bcrypt.hash (
         passwordText,
         saltRounds
@@ -34,15 +34,15 @@ const verifyPassword = (hash, passwordText) => {
     .then (res => {
         return res
     });
-}
+}*/
 
 const generateTempPassword = () => {
   return Math.random().toString(36).substr(2, 5);
 };
 
 module.exports = {
-    verifyPassword,
-    hashPassword,
+    //verifyPassword,
+    //hashPassword,
     createSession,
     generateTempPassword,
 }
