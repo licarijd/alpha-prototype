@@ -1,6 +1,6 @@
 //const bcrypt = require('bcrypt');
 const uuidv1 = require('uuid/v1');
-const { TIME_ONE_HOUR } = require ('../constants/constants')
+const { TIME_ONE_HOUR } = require ('../../constants/constants')
 
 const saltRounds = 10;
 

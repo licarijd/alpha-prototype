@@ -3,8 +3,8 @@ const cors = require('cors');
 const next = require('next');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-//const controllers = require('./api/controllers');
-const { createSession } = require('./utils/AuthUtils');
+const controllers = require('./api/controllers');
+const { createSession } = require('./api/utils/AuthUtils');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -23,7 +23,7 @@ app.prepare()
     server.use(bodyParser());
     server.use(session(sess));
 
-    //server.use('/api', controllers);
+    server.use('/api', controllers);
 
     server.get('/dashboard', (req, res) => {
       if (!req.session.username) {
