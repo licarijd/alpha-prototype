@@ -8,23 +8,52 @@ const getAthleteByUserName = () => {
     const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
 
     const params = {
-    TableName: 'ATHLETES_QA',
-    Key: {
-        'username': {S: 'fast_harambe_95'}
-    },
-    ProjectionExpression: 'age'
+      TableName: 'ATHLETES_QA',
+      Key: {
+          'username': {S: 'fast_harambe_95'}
+      },
+      ProjectionExpression: 'age'
     };
 
-// Call DynamoDB to read the item from the table
-ddb.getItem(params, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-    return err
-  } else {
-    console.log("Success", data.Item);
-    return data.Item
-  }
-});
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
+    } else {
+      console.log("Success", data.Item);
+      return data.Item
+    }
+  });
+}
+
+const getAthleteByEmail = () => {
+  AWS.config.update(config.aws_remote_config);
+
+  // Create the DynamoDB service object
+  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  const params = {
+    TableName: "ATHLETES_QA",
+    IndexName: "email-index",
+    KeyConditionExpression: "email = :email", 
+    ExpressionAttributeValues: {
+     ":email": {
+       S: "fast_harambe@gmail.com"
+      }
+    }
+  };
+
+  // Call DynamoDB to read the item from the table
+  ddb.query(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
+    } else {
+      console.log("Success", data.Items);
+      return data.Items
+    }
+  });
 }
 
 const addAthlete = () => {
@@ -56,5 +85,6 @@ const addAthlete = () => {
 
 module.exports = {
     getAthleteByUserName,
+    getAthleteByEmail,
     addAthlete
 }
