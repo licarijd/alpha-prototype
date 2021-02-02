@@ -6,9 +6,10 @@ const {
   addAthlete,
   getAthleteByUserName,
   getAthleteByEmail,
-  addDailyQuestionnaireResults,
-  addWeeklyQuestionnaireResults,
-  removeOldQuestionnaireData
+  updateDailyQuestionnaireResults,
+  updateWeeklyQuestionnaireResults,
+  removeOldQuestionnaireData,
+  getScore
 } = require('../services/DynamoDbService');
 
 router.post('/create-athlete', (request, response) => {
@@ -36,7 +37,7 @@ router.get('/get-email', (request, response) => {
 });
 
 router.post('/update-daily-questionnaire', (request, response) => {
-  Promise.resolve(addDailyQuestionnaireResults())
+  Promise.resolve(updateDailyQuestionnaireResults())
     .then(() => {
       return new Response("Update operation attempt made to DynamoDB").send(response);
     })
@@ -44,7 +45,7 @@ router.post('/update-daily-questionnaire', (request, response) => {
 });
 
 router.post('/update-weekly-questionnaire', (request, response) => {
-  Promise.resolve(addWeeklyQuestionnaireResults())
+  Promise.resolve(updateWeeklyQuestionnaireResults())
     .then(() => {
       return new Response("Update operation attempt made to DynamoDB").send(response);
     })
@@ -55,6 +56,14 @@ router.post('/remove-old-questionnaires', (request, response) => {
   Promise.resolve(removeOldQuestionnaireData())
     .then(() => {
       return new Response("Operation attempts made to DynamoDB").send(response);
+    })
+    .catch(null, () => new Error(500).send(response));
+});
+
+router.post('/get-score', (request, response) => {
+  Promise.resolve(getScore())
+    .then((score) => {
+      return new Response(score).send(response);
     })
     .catch(null, () => new Error(500).send(response));
 });
