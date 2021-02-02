@@ -1,6 +1,6 @@
 const Express = require('express');
 const HttpStatus = require('http-status-codes');
-const authController = require('./AuthenticationController');
+const authController = require('./DynamoDBController');
 const Error = require('../models/Error');
 
 const router = Express.Router();
