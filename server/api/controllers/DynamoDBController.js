@@ -6,10 +6,10 @@ const {
   addAthlete,
   getAthleteByUserName,
   getAthleteByEmail,
-  updateDailyQuestionnaireResults,
-  updateWeeklyQuestionnaireResults,
   removeOldQuestionnaireData,
-  getScore
+  getScore,
+  addDailyQuestionnaire,
+  addWeeklyQuestionnaire
 } = require('../services/DynamoDbService');
 
 router.post('/create-athlete', (request, response) => {
@@ -37,7 +37,7 @@ router.get('/get-email', (request, response) => {
 });
 
 router.post('/update-daily-questionnaire', (request, response) => {
-  Promise.resolve(updateDailyQuestionnaireResults())
+  Promise.resolve(addDailyQuestionnaire())
     .then(() => {
       return new Response("Update operation attempt made to DynamoDB").send(response);
     })
@@ -45,7 +45,7 @@ router.post('/update-daily-questionnaire', (request, response) => {
 });
 
 router.post('/update-weekly-questionnaire', (request, response) => {
-  Promise.resolve(updateWeeklyQuestionnaireResults())
+  Promise.resolve(addWeeklyQuestionnaire())
     .then(() => {
       return new Response("Update operation attempt made to DynamoDB").send(response);
     })

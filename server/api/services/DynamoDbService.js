@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const config = require('../../../aws-config/config');
+const { historicalQuestionnaireResults, dailyQuestionnaireResults, weeklyQuestionnaireResults } = require('../../../mock-data/questionnaireResults');
 const computeScore = require('../utils/ALPHAScoring');
 
 const getAthleteByUserName = () => {
@@ -11,7 +12,7 @@ const getAthleteByUserName = () => {
     const params = {
       TableName: 'ATHLETES_QA',
       Key: {
-          'username': {S: 'fast_harambe_95'}
+          'username': {S: 'fast_harambe_69'}
       },
       ProjectionExpression: 'age'
     };
@@ -37,7 +38,7 @@ const removeOldQuestionnaireData = () => {
   const params = {
     TableName: 'ATHLETES_QA',
     Key: {
-        'username': {S: 'fast_harambe_95'}
+        'username': {S: 'fast_harambe_69'}
     },
     ProjectionExpression: 'dailyQuestionnaireResults, weeklyQuestionnaireResults'
   };
@@ -85,20 +86,22 @@ const getAthleteByEmail = () => {
   });
 }
 
-const addAthlete = () => {
+const addAthlete = (data = historicalQuestionnaireResults) => {
     AWS.config.update(config.aws_remote_config);
 
     // Create the DynamoDB service object
     const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-    
+    const date = new Date().getTime()
+    const historicalQuestionnaireData = {}
+    historicalQuestionnaireData[date] = {S: data}
     const params = {
         TableName: 'ATHLETES_QA',
         Item: {
-          'username' : {S: 'fast_harambe_95'},
+          'username' : {S: 'fast_harambe_69'},
           'age' : {N: '29'},
-          'email' : {S: 'fast_harambe_95@gmail.com'},
+          'email' : {S: 'fast_harambe_69@gmail.com'},
           'password' : {S: 'example'},
-          'historicalQuestionnaireResults' : {M : {"1612220346" : {S: "historical-test-data-json"}}}
+          'historicalQuestionnaireResults' : {M : historicalQuestionnaireData}
         }
       };
 
@@ -114,7 +117,7 @@ const addAthlete = () => {
     });
 }
 
-const updateDailyQuestionnaireResults = (questionnaireData={"1612220346" : {S: 'hi'}, "1612227574" : {S: 'hi'}}) => {
+const updateDailyQuestionnaireResults = (questionnaireData) => {
   AWS.config.update(config.aws_remote_config);
 
   // Create the DynamoDB service object
@@ -124,7 +127,7 @@ const updateDailyQuestionnaireResults = (questionnaireData={"1612220346" : {S: '
     TableName: 'ATHLETES_QA',
     Key: {
       'username': {
-          S: 'fast_harambe_95'
+          S: 'fast_harambe_69'
       }
     },               
     UpdateExpression: 'SET #dailyQuestionnaireResults =:dailyQuestionnaireResults',
@@ -132,9 +135,7 @@ const updateDailyQuestionnaireResults = (questionnaireData={"1612220346" : {S: '
         '#dailyQuestionnaireResults': 'dailyQuestionnaireResults' //COLUMN NAME       
     },
     ExpressionAttributeValues: {
-      ':dailyQuestionnaireResults': {
-        M : questionnaireData
-      }
+      ':dailyQuestionnaireResults': questionnaireData
     }
   };
 
@@ -160,7 +161,7 @@ const updateWeeklyQuestionnaireResults = (questionnaireData={"1612220346" : {S: 
     TableName: 'ATHLETES_QA',
     Key: {
       'username': {
-          S: 'fast_harambe_95'
+          S: 'fast_harambe_69'
       }
     },               
     UpdateExpression: 'SET #weeklyQuestionnaireResults =:weeklyQuestionnaireResults',
@@ -168,9 +169,7 @@ const updateWeeklyQuestionnaireResults = (questionnaireData={"1612220346" : {S: 
         '#weeklyQuestionnaireResults': 'weeklyQuestionnaireResults' //COLUMN NAME       
     },
     ExpressionAttributeValues: {
-      ':weeklyQuestionnaireResults': {
-        M : questionnaireData
-      }
+      ':weeklyQuestionnaireResults': questionnaireData
     }
   };
 
@@ -216,7 +215,7 @@ const getScore = () => {
   const params = {
     TableName: 'ATHLETES_QA',
     Key: {
-        'username': {S: 'fast_harambe_95'}
+        'username': {S: 'fast_harambe_69'}
     },
     ProjectionExpression: 'dailyQuestionnaireResults, weeklyQuestionnaireResults, trends'
   };
@@ -239,7 +238,7 @@ const getScore = () => {
 
 const computeTrends = (score, trendsObj) => {
   let trends = trendsObj || { M : {} }
-  const date = new Date()
+  const date = new Date().getTime()
   for (const [key, value] of Object.entries(score)) {
     if (trends.M[key] && trends.M[key].M) {
       trends.M[key].M[date] = {S: value}
@@ -262,7 +261,7 @@ const updateTrends = (trends) => {
     TableName: 'ATHLETES_QA',
     Key: {
       'username': {
-          S: 'fast_harambe_95'
+          S: 'fast_harambe_69'
       }
     },               
     UpdateExpression: 'SET #trends =:trends',
@@ -286,12 +285,96 @@ const updateTrends = (trends) => {
   });
 }
 
+const addDailyQuestionnaire = (questionnaireResults = dailyQuestionnaireResults) => {
+  return getDailyQuestionnaires(questionnaireResults)
+}
+
+const addWeeklyQuestionnaire = (questionnaireResults = weeklyQuestionnaireResults) => {
+  return getWeeklyQuestionnaires(questionnaireResults)
+}
+
+const getDailyQuestionnaires = (questionnaireResults) => {
+  AWS.config.update(config.aws_remote_config);
+
+  // Create the DynamoDB service object
+  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  const params = {
+    TableName: 'ATHLETES_QA',
+    Key: {
+        'username': {S: 'fast_harambe_69'}
+    },
+    ProjectionExpression: 'dailyQuestionnaireResults'
+  };
+
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
+    } else {
+      console.log("Success", data.Item);
+      const newDailyQuestionnaireData = buildQuestionnaireMap(questionnaireResults, data.Item, false)
+      updateDailyQuestionnaireResults(newDailyQuestionnaireData)
+      return data.Item
+    }
+  })/*.then(res => res)*/;
+}
+
+const buildQuestionnaireMap = (newResults, existingResults, isWeekly) => {
+  const limit = isWeekly ? 4 : 30
+  let results = { M: {} }
+  
+  if (existingResults && Object.keys(existingResults).length != 0) {
+    const resultsObj = isWeekly ? existingResults.weeklyQuestionnaireResults : existingResults.dailyQuestionnaireResults
+    results = {...resultsObj}
+  }
+
+  const timestamps = Object.keys(results.M)
+
+  if (timestamps.length >= limit) {
+    const oldest = Math.min(...timestamps)
+    delete results.M[oldest]
+  }
+  const date = new Date().getTime()
+  results.M[date] = {S: newResults}
+  return results
+}
+
+const getWeeklyQuestionnaires = (questionnaireResults) => {
+  AWS.config.update(config.aws_remote_config);
+
+  // Create the DynamoDB service object
+  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  const params = {
+    TableName: 'ATHLETES_QA',
+    Key: {
+        'username': {S: 'fast_harambe_69'}
+    },
+    ProjectionExpression: 'weeklyQuestionnaireResults'
+  };
+
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
+    } else {
+      console.log("Success", data.Item);
+      const newWeeklyQuestionnaireData = buildQuestionnaireMap(questionnaireResults, data.Item, true)
+      updateWeeklyQuestionnaireResults(newWeeklyQuestionnaireData)
+      return data.Item
+    }
+  })/*.then(res => res)*/;
+}
+
 module.exports = {
     getAthleteByUserName,
     getAthleteByEmail,
     addAthlete,
-    updateDailyQuestionnaireResults,
-    updateWeeklyQuestionnaireResults,
+    addDailyQuestionnaire,
+    addWeeklyQuestionnaire,
     removeOldQuestionnaireData,
     getScore
 }
