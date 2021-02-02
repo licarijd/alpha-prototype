@@ -238,28 +238,17 @@ const getScore = () => {
 }
 
 const computeTrends = (score, trendsObj) => {
-  console.log("BEFORE")
-  console.log(trendsObj)
-  //console.log(trendsObj.M['sleep-factors'].M)
   let trends = trendsObj || { M : {} }
-  console.log(trends)
   const date = new Date()
   for (const [key, value] of Object.entries(score)) {
     if (trends.M[key] && trends.M[key].M) {
-      //const trendEntry = {}
-      //trendEntry[date] = {S: value}
       trends.M[key].M[date] = {S: value}
-      console.log("new")
-      console.log(trends.M[key].M[date])
     } else {
       const trendEntry = {}
       trendEntry[date] = {S: value}
       trends.M[key] = {M: trendEntry}
     }
   }
-  console.log("AFTER")
-  console.log(trends)
-  console.log(trends.M['sleep-factors'].M)
   return trends
 }
 
