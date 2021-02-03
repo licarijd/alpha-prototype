@@ -1,12 +1,10 @@
 const Express = require('express');
-
 const router = Express.Router();
-const Response = require('../models/Response');
+
 const {
   createAthlete,
   getAthleteByUserName,
   getAthleteByEmail,
-  removeOldQuestionnaireData,
   getScore,
   addDailyQuestionnaire,
   addWeeklyQuestionnaire,
@@ -32,51 +30,43 @@ router.post('/login', (request, response) => {
 });
 
 router.get('/get-athlete', (request, response) => {
-  Promise.resolve(getAthleteByUserName())
-    .then(() => {
-      return new Response("GetItem operation attempt made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  try {
+    getAthleteByUserName(response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
   
 router.get('/get-email', (request, response) => {
-  Promise.resolve(getAthleteByEmail())
-    .then(() => {
-      return new Response("Query operation attempt made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  try {
+    getAthleteByEmail(response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
 
 router.post('/update-daily-questionnaire', (request, response) => {
-  Promise.resolve(addDailyQuestionnaire())
-    .then(() => {
-      return new Response("Update operation attempt made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  try {
+    addDailyQuestionnaire(response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
 
 router.post('/update-weekly-questionnaire', (request, response) => {
-  Promise.resolve(addWeeklyQuestionnaire())
-    .then(() => {
-      return new Response("Update operation attempt made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
-});
-
-router.post('/remove-old-questionnaires', (request, response) => {
-  Promise.resolve(removeOldQuestionnaireData())
-    .then(() => {
-      return new Response("Operation attempts made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  try {
+    addWeeklyQuestionnaire(response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
 
 router.post('/get-score', (request, response) => {
-  Promise.resolve(getScore())
-    .then((score) => {
-      return new Response(score).send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  try {
+    getScore(response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
 
 module.exports = router;

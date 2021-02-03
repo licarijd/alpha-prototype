@@ -1,11 +1,10 @@
 const AWS = require('aws-sdk');
-const { response } = require('express');
 const config = require('../../../aws-config/config');
 const { historicalQuestionnaireResults, dailyQuestionnaireResults, weeklyQuestionnaireResults } = require('../../../mock-data/questionnaireResults');
 const computeScore = require('../utils/ALPHAScoring');
 const { hashPassword, verifyPassword } = require('../utils/AuthUtils');
 
-const getAthleteByUserName = () => {
+const getAthleteByUserName = (response) => {
     AWS.config.update(config.aws_remote_config);
 
     // Create the DynamoDB service object
@@ -26,6 +25,7 @@ const getAthleteByUserName = () => {
       return err
     } else {
       console.log("Success", data.Item);
+      response.send(data.Item)
       return data.Item
     }
   });
@@ -98,35 +98,7 @@ const login = (username, passwordText, response) => {
   });
 }
 
-const removeOldQuestionnaireData = () => {
-  AWS.config.update(config.aws_remote_config);
-
-  // Create the DynamoDB service object
-  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-
-  const params = {
-    TableName: 'ATHLETES_QA',
-    Key: {
-        'username': {S: 'fast_harambe_69'}
-    },
-    ProjectionExpression: 'dailyQuestionnaireResults, weeklyQuestionnaireResults'
-  };
-
-  // Call DynamoDB to read the item from the table
-  ddb.getItem(params, function(err, data) {
-    if (err) {
-      console.log("Error", err);
-      return err
-    } else {
-      console.log("Success", data.Item);
-      const {dailyQuestionnaireResults, weeklyQuestionnaireResults} = data.Item
-      filterOldQuestionnaireData(dailyQuestionnaireResults.M, weeklyQuestionnaireResults.M)
-      return data.Item
-    }
-  })/*.then(res => res)*/;
-}
-
-const getAthleteByEmail = () => {
+const getAthleteByEmail = (response) => {
   AWS.config.update(config.aws_remote_config);
 
   // Create the DynamoDB service object
@@ -150,6 +122,7 @@ const getAthleteByEmail = () => {
       return err
     } else {
       console.log("Success", data.Items);
+      response.send(data.Item)
       return data.Items
     }
   });
@@ -255,28 +228,7 @@ const updateWeeklyQuestionnaireResults = (questionnaireData={"1612220346" : {S: 
   });
 }
 
-const filterOldQuestionnaireData = (dailyQuestionnaireData, weeklyQuestionnaireData) => {
-  const newDailyQuestionnaireMap = {}
-  const newWeeklyQuestionnaireMap = {}
-  let i = 0
-  for (const [key, value] of Object.entries(dailyQuestionnaireData)) {
-    if (i == 0) { // replace with date condition
-      newDailyQuestionnaireMap[key] = value
-    }
-    i++
-  }
-  let j = 0
-  for (const [key, value] of Object.entries(weeklyQuestionnaireData)) {
-    if (j == 0) { // replace with date condition
-      newWeeklyQuestionnaireMap[key] = value
-    }
-    j++
-  }
-  updateWeeklyQuestionnaireResults(newWeeklyQuestionnaireMap)
-  updateDailyQuestionnaireResults(newDailyQuestionnaireMap)
-}
-
-const getScore = () => {
+const getScore = (response) => {
   AWS.config.update(config.aws_remote_config);
 
   // Create the DynamoDB service object
@@ -301,9 +253,10 @@ const getScore = () => {
       const score = computeScore({dailyQuestionnaireResults, weeklyQuestionnaireResults})
       const newTrends = computeTrends(score, trends)
       updateTrends(newTrends)
+      response.send(score)
       return score
     }
-  })/*.then(res => res)*/;
+  });
 }
 
 const computeTrends = (score, trendsObj) => {
@@ -355,15 +308,15 @@ const updateTrends = (trends) => {
   });
 }
 
-const addDailyQuestionnaire = (questionnaireResults = dailyQuestionnaireResults) => {
-  return getDailyQuestionnaires(questionnaireResults)
+const addDailyQuestionnaire = (response, questionnaireResults = dailyQuestionnaireResults) => {
+  return getDailyQuestionnaires(response, questionnaireResults)
 }
 
-const addWeeklyQuestionnaire = (questionnaireResults = weeklyQuestionnaireResults) => {
-  return getWeeklyQuestionnaires(questionnaireResults)
+const addWeeklyQuestionnaire = (response, questionnaireResults = weeklyQuestionnaireResults) => {
+  return getWeeklyQuestionnaires(response, questionnaireResults)
 }
 
-const getDailyQuestionnaires = (questionnaireResults) => {
+const getDailyQuestionnaires = (response, questionnaireResults) => {
   AWS.config.update(config.aws_remote_config);
 
   // Create the DynamoDB service object
@@ -386,9 +339,10 @@ const getDailyQuestionnaires = (questionnaireResults) => {
       console.log("Success", data.Item);
       const newDailyQuestionnaireData = buildQuestionnaireMap(questionnaireResults, data.Item, false)
       updateDailyQuestionnaireResults(newDailyQuestionnaireData)
+      response.send(data.Item)
       return data.Item
     }
-  })/*.then(res => res)*/;
+  })
 }
 
 const buildQuestionnaireMap = (newResults, existingResults, isWeekly) => {
@@ -411,7 +365,7 @@ const buildQuestionnaireMap = (newResults, existingResults, isWeekly) => {
   return results
 }
 
-const getWeeklyQuestionnaires = (questionnaireResults) => {
+const getWeeklyQuestionnaires = (response, questionnaireResults) => {
   AWS.config.update(config.aws_remote_config);
 
   // Create the DynamoDB service object
@@ -434,9 +388,10 @@ const getWeeklyQuestionnaires = (questionnaireResults) => {
       console.log("Success", data.Item);
       const newWeeklyQuestionnaireData = buildQuestionnaireMap(questionnaireResults, data.Item, true)
       updateWeeklyQuestionnaireResults(newWeeklyQuestionnaireData)
+      response.send(data.Item)
       return data.Item
     }
-  })/*.then(res => res)*/;
+  })
 }
 
 module.exports = {
@@ -445,7 +400,6 @@ module.exports = {
     addAthlete,
     addDailyQuestionnaire,
     addWeeklyQuestionnaire,
-    removeOldQuestionnaireData,
     getScore,
     createAthlete,
     login
