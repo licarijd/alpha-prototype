@@ -3,7 +3,7 @@ const { response } = require('express');
 const config = require('../../../aws-config/config');
 const { historicalQuestionnaireResults, dailyQuestionnaireResults, weeklyQuestionnaireResults } = require('../../../mock-data/questionnaireResults');
 const computeScore = require('../utils/ALPHAScoring');
-const { hashPassword } = require('../utils/AuthUtils');
+const { hashPassword, verifyPassword } = require('../utils/AuthUtils');
 
 const getAthleteByUserName = () => {
     AWS.config.update(config.aws_remote_config);
@@ -45,21 +45,57 @@ const createAthlete = (username, response) => {
     ProjectionExpression: 'email'
   };
 
-// Call DynamoDB to read the item from the table
-ddb.getItem(params, function(err, data) {
-  if (err) {
-    console.log("Error", err);
-    return err
-  } else {
-    console.log("Success", data.Item);
-
-    if (data.Item && data.Item.email) {
-      response.send(`An athlete with username ${username} already exists`)
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
     } else {
-      addAthlete(username, response)
+      console.log("Success", data.Item);
+
+      if (data.Item && data.Item.email) {
+        response.send(`An athlete with username ${username} already exists`)
+      } else {
+        addAthlete(username, response)
+      }
     }
-  }
-});
+  });
+}
+
+const login = (username, passwordText, response) => {
+  AWS.config.update(config.aws_remote_config);
+
+  // Create the DynamoDB service object
+  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  const params = {
+    TableName: 'ATHLETES_QA',
+    Key: {
+        'username': {S: username}
+    },
+    ProjectionExpression: 'password'
+  };
+
+  // Call DynamoDB to read the item from the table
+  ddb.getItem(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return err
+    } else {
+      console.log("Success", data.Item);
+
+      if (data.Item && data.Item.password) {
+        const passwordCorrect = verifyPassword(data.Item.password.S, passwordText)
+        if (passwordCorrect) {
+          response.send('Password correct')
+        } else {
+          response.send('Password incorrect')
+        }
+      } else {
+        response.send(`An athlete with username ${username} doesn't exist`)
+      }
+    }
+  });
 }
 
 const removeOldQuestionnaireData = () => {
@@ -411,5 +447,6 @@ module.exports = {
     addWeeklyQuestionnaire,
     removeOldQuestionnaireData,
     getScore,
-    createAthlete
+    createAthlete,
+    login
 }

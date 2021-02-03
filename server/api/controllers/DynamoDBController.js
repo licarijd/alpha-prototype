@@ -9,13 +9,23 @@ const {
   removeOldQuestionnaireData,
   getScore,
   addDailyQuestionnaire,
-  addWeeklyQuestionnaire
+  addWeeklyQuestionnaire,
+  login
 } = require('../services/DynamoDbService');
 
 router.post('/create-athlete', (request, response) => {
   const {username} = request.body
   try {
     createAthlete(username, response)
+  } catch {
+    response.send(new Error(500));
+  }
+});
+
+router.post('/login', (request, response) => {
+  const {username, passwordText} = request.body
+  try {
+    login(username, passwordText, response)
   } catch {
     response.send(new Error(500));
   }
