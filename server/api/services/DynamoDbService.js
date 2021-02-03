@@ -1,7 +1,9 @@
 const AWS = require('aws-sdk');
+const { response } = require('express');
 const config = require('../../../aws-config/config');
 const { historicalQuestionnaireResults, dailyQuestionnaireResults, weeklyQuestionnaireResults } = require('../../../mock-data/questionnaireResults');
 const computeScore = require('../utils/ALPHAScoring');
+const { hashPassword } = require('../utils/AuthUtils');
 
 const getAthleteByUserName = () => {
     AWS.config.update(config.aws_remote_config);
@@ -27,6 +29,37 @@ const getAthleteByUserName = () => {
       return data.Item
     }
   });
+}
+
+const createAthlete = (username, response) => {
+  AWS.config.update(config.aws_remote_config);
+
+  // Create the DynamoDB service object
+  const ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+  const params = {
+    TableName: 'ATHLETES_QA',
+    Key: {
+        'username': {S: username}
+    },
+    ProjectionExpression: 'email'
+  };
+
+// Call DynamoDB to read the item from the table
+ddb.getItem(params, function(err, data) {
+  if (err) {
+    console.log("Error", err);
+    return err
+  } else {
+    console.log("Success", data.Item);
+
+    if (data.Item && data.Item.email) {
+      response.send(`An athlete with username ${username} already exists`)
+    } else {
+      addAthlete(username, response)
+    }
+  }
+});
 }
 
 const removeOldQuestionnaireData = () => {
@@ -86,7 +119,7 @@ const getAthleteByEmail = () => {
   });
 }
 
-const addAthlete = (data = historicalQuestionnaireResults) => {
+const addAthlete = (username, response, data = historicalQuestionnaireResults) => {
     AWS.config.update(config.aws_remote_config);
 
     // Create the DynamoDB service object
@@ -97,10 +130,10 @@ const addAthlete = (data = historicalQuestionnaireResults) => {
     const params = {
         TableName: 'ATHLETES_QA',
         Item: {
-          'username' : {S: 'fast_harambe_69'},
+          'username' : {S: username},
           'age' : {N: '29'},
           'email' : {S: 'fast_harambe_69@gmail.com'},
-          'password' : {S: 'example'},
+          'password' : {S: hashPassword('example')},
           'historicalQuestionnaireResults' : {M : historicalQuestionnaireData}
         }
       };
@@ -112,6 +145,7 @@ const addAthlete = (data = historicalQuestionnaireResults) => {
             return err
         } else {
             console.log("Success", data);
+            response.send(data)
             return data
         }
     });
@@ -376,5 +410,6 @@ module.exports = {
     addDailyQuestionnaire,
     addWeeklyQuestionnaire,
     removeOldQuestionnaireData,
-    getScore
+    getScore,
+    createAthlete
 }

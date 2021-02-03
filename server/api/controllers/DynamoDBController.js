@@ -3,7 +3,7 @@ const Express = require('express');
 const router = Express.Router();
 const Response = require('../models/Response');
 const {
-  addAthlete,
+  createAthlete,
   getAthleteByUserName,
   getAthleteByEmail,
   removeOldQuestionnaireData,
@@ -13,11 +13,12 @@ const {
 } = require('../services/DynamoDbService');
 
 router.post('/create-athlete', (request, response) => {
-  Promise.resolve(addAthlete())
-    .then(() => {
-      return new Response("Put operation attempt made to DynamoDB").send(response);
-    })
-    .catch(null, () => new Error(500).send(response));
+  const {username} = request.body
+  try {
+    createAthlete(username, response)
+  } catch {
+    response.send(new Error(500));
+  }
 });
 
 router.get('/get-athlete', (request, response) => {
